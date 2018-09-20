@@ -41,7 +41,7 @@ class App extends Component {
       .then(resp => resp.json())
   }
   validateCSS (codeToValidate) {
-    return window.fetch('http://jigsaw.w3.org/css-validator/validator?profile=css3&output=soap12&text=' + encodeURIComponent(codeToValidate))
+    return window.fetch('https://jigsaw.w3.org/css-validator/validator?profile=css3&output=soap12&text=' + encodeURIComponent(codeToValidate))
       .then(resp => resp.text())
       .then(text => {
         let parser = new window.DOMParser()
