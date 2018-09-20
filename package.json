@@ -17,7 +17,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "bclindner.github.io/react-validator",
+  "homepage": "https://bclindner.github.io/react-validator",
   "devDependencies": {
     "gh-pages": "^2.0.0"
   }
