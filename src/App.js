@@ -9,11 +9,11 @@ class App extends Component {
         messages: []
       }
     }
-    this.validate = this.validate.bind(this)
+    this.handleNewFile = this.handleNewFile.bind(this)
   }
-  validate (e) {
-    let filetype = e.target.files[0].type
-    readFile(e.target.files[0])
+  validate (file) {
+    let filetype = file.type
+    readFile(file)
       .then(codeToValidate => {
         switch (filetype) {
           case 'text/css':
@@ -63,13 +63,21 @@ class App extends Component {
         return response
       })
   }
+  handleNewFile (e) {
+    const file = e.target.files[0]
+    this.setState({
+      response: {
+        messages: []
+      }
+    }, () => (this.validate(file)))
+  }
   render () {
     return (
       <div style={{
         width: '90%',
         margin: '1em auto'
       }}>
-        <ValidatorFileDrop validate={this.validate} />
+        <ValidatorFileDrop handleNewFile={this.handleNewFile} />
         <ValidatorMessageList response={this.state.response} />
       </div>
     )
@@ -111,7 +119,7 @@ const ValidatorFileDrop = (props) => (
   }}>
     <input style={{
       padding: '2em'
-    }} type='file' name='file' onChange={props.validate} />
+    }} type='file' name='file' onChange={props.handleNewFile} />
   </form>
 )
 
